@@ -1,19 +1,21 @@
 <template>
     <div id="app">
 
-        <app-header :changeSearch = "changeSearch"/>
+        <app-header/>
 
         <div class="container">
-            
-             <h1 class="pt-3 pb-3">Персонажи Marvel</h1> 
-             <app-modal :character="character" />
-             <spinner v-if="loading"/>      
+            <h1 class="pt-3 pb-3">Персонажи Marvel</h1>
 
-         <div v-else class="row">
-             <h5 v-if="!searchCharacters.length">    Ничего не найдено     </h5>
+         
 
-        <div v-else
-         v-for="(e1, idx) in searchCharacters"
+            <app-modal :character="characters[characterIndex]" />
+
+            <spinner v-if="loading"/>
+
+         <div class="row">
+
+
+        <div v-for="(e1, idx) in characters"
         :key="e1.id"
         
         class="card mb-3 col-sm-12 col-md-6 col-lg-4">
@@ -62,7 +64,6 @@
                 loading: false,
                 characters: [],
                 characterIndex: 0,
-                search: ' ',
             }
         },
         methods: {
@@ -72,23 +73,8 @@
                         .then(json => this.characters = json);
 
                 },
-
-                changeSearch: function(value) {
-                        this.search = value;
-                }
         },
-       
-         computed: {
-          character: function () {
-                return this.searchCharacters[this.characterIndex] || null
-            },
-            searchCharacters: function () {
-                const {characters, search} = this;
-                return characters.filter((character) => {
-                    return character.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
-                })
-            },
-        },
+        computed: {},
         async mounted()  {
             this.loading = true;
             await this.fetchCharacters();
