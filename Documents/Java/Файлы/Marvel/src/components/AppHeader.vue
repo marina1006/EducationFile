@@ -1,11 +1,23 @@
 <template>
+
+
   <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand">Marvel</a>
+          <a href = "#" class="navbar-brand">Marvel</a>
+          
           <form class="d-flex">
-            <input class="form-control me-2" 
-                type="search" placeholder="Поиск" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Все</button>
+            <input type="search" 
+                placeholder="Поиск"
+                aria-label="Search"
+                class="form-control me-2" 
+                v-model="search"
+                @input="changeSearch(search)"
+            >
+            <button type="reset"
+            class="btn btn-outline-light" 
+            >
+            Все
+            </button>
           </form>
         </div>
       </nav>
@@ -14,8 +26,10 @@
 <script>
     export default {
         name: "AppHeader",
+        props: ['changeSearch'],
         data() {
             return {
+              search: ' ',
             }
         },
     }
