@@ -18,8 +18,6 @@ public class Util {
       connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      close(connection);
     }
 
     return connection;

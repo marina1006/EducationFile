@@ -20,7 +20,7 @@ public class Util {
 
   private static SessionFactory sessionFactory;
 
-  public static SessionFactory getSessionFactory() {
+  public static SessionFactory buildSessionFactory() {
     if (sessionFactory == null) {
       try {
         Configuration configuration = new Configuration();
@@ -52,6 +52,14 @@ public class Util {
       }
     }
     return sessionFactory;
+  }
+
+  public static void close() {
+
+    if (sessionFactory != null) {
+      sessionFactory.close();
+    }
+
   }
 
   public static Connection getConnection() {

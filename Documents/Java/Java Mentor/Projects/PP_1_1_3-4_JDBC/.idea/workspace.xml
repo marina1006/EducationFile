@@ -41,9 +41,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PP_1_1_3-5_Hibernate" />
   </component>
-  <component name="RunManager" selected="JUnit.All in TaskJDBC">
+  <component name="RunManager" selected="JUnit.All in PP_1_1_3-4_JDBC">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="jm.task.core.jdbc.Main" />
       <module name="TaskJDBC" />
@@ -53,6 +53,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in PP_1_1_3-4_JDBC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PP_1_1_3-4_JDBC" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,6 +84,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in PP_1_1_3-4_JDBC" />
         <item itemvalue="JUnit.All in TaskJDBC" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UserServiceTest" />
@@ -97,7 +106,7 @@
       <workItem from="1670706625427" duration="1139000" />
       <workItem from="1670746675176" duration="665000" />
       <workItem from="1670760336622" duration="13295000" />
-      <workItem from="1670859043016" duration="2746000" />
+      <workItem from="1670859043016" duration="4457000" />
     </task>
     <task id="LOCAL-00001" summary="task checked">
       <created>1670773917030</created>

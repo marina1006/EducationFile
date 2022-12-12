@@ -1,5 +1,6 @@
 package jm.task.core.jdbc;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.service.UserService;
@@ -10,7 +11,7 @@ public class Main {
 
   public static void main(String[] args) throws SQLException {
     // реализуйте алгоритм здесь
-    Util.getConnection();
+    Connection connection = Util.getConnection();
     UserService service = new UserServiceImpl();
 
     service.createUsersTable();
@@ -24,6 +25,6 @@ public class Main {
     service.getAllUsers();
     service.cleanUsersTable();
     service.dropUsersTable();
-    Util.close(Util.getConnection());
+    Util.close(connection);
   }
 }
