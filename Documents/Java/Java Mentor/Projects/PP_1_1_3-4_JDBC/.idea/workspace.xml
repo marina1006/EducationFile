@@ -41,8 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PP_1_1_3-4_JDBC" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="JUnit.All in TaskJDBC">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -98,9 +97,7 @@
       <workItem from="1670706625427" duration="1139000" />
       <workItem from="1670746675176" duration="665000" />
       <workItem from="1670760336622" duration="13295000" />
-      <workItem from="1670776575533" duration="11785000" />
-      <workItem from="1670857850528" duration="66000" />
-      <workItem from="1670858717905" duration="270000" />
+      <workItem from="1670859043016" duration="2746000" />
     </task>
     <task id="LOCAL-00001" summary="task checked">
       <created>1670773917030</created>
