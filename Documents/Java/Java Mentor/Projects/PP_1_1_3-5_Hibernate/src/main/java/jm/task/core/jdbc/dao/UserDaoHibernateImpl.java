@@ -22,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
     try (Session session = Util.buildSessionFactory().openSession()) {
 
       session.beginTransaction();
-      Query query = session.createSQLQuery("CREATE TABLE IF NOT EXISTS User (" +
+      Query query = session.createNativeQuery("CREATE TABLE IF NOT EXISTS users (" +
           "(id INT PRIMARY KEY AUTO_INCREMENT, " +
           "name VARCHAR(100) NOT NULL, " +
           "lastName VARCHAR(100) NOT NULL, " +
@@ -40,7 +40,7 @@ public class UserDaoHibernateImpl implements UserDao {
     try (Session session = Util.buildSessionFactory().openSession()) {
 
       session.beginTransaction();
-      Query query = session.createSQLQuery("DROP TABLE IF EXISTS User");
+      Query query = session.createNativeQuery("DROP TABLE IF EXISTS users");
       query.executeUpdate();
       cleanUsersTable();
       session.getTransaction().commit();
