@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import jm.task.core.jdbc.model.User;
 
@@ -23,18 +24,18 @@ public class UserDaoHibernateImpl implements UserDao {
   }
 
   @Override
-  public void createUsersTable() {
+  public void createUsersTable()   {
 
     try (Session session = sessionFactory.openSession()) {
 
       transaction = session.beginTransaction();
-      Query query = session.createSQLQuery("CREATE TABLE IF NOT EXISTS users (" +
-          "(id INT PRIMARY KEY AUTO_INCREMENT, " +
+      Query query = session.createNativeQuery("CREATE TABLE IF NOT EXISTS users (" +
+          "id INT PRIMARY KEY AUTO_INCREMENT, " +
           "name VARCHAR(100) NOT NULL, " +
           "lastName VARCHAR(100) NOT NULL, " +
           "age SMALLINT NOT NULL)");
       query.executeUpdate();
-      session.getTransaction().commit(); // закрываем
+      transaction.commit(); // закрываем
     } catch (Exception e) {
       if (transaction != null) {
         transaction.rollback();

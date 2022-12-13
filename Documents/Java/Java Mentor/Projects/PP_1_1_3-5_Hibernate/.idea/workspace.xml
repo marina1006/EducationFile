@@ -98,10 +98,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in TaskJDBC" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.UserServiceTest.createUsersTable" />
         <item itemvalue="JUnit.UserServiceTest.dropUsersTable" />
-        <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -122,7 +122,7 @@
       <workItem from="1670760336622" duration="13295000" />
       <workItem from="1670776575533" duration="11785000" />
       <workItem from="1670863123118" duration="8529000" />
-      <workItem from="1670935600725" duration="7855000" />
+      <workItem from="1670935600725" duration="9918000" />
     </task>
     <task id="LOCAL-00001" summary="task checked">
       <created>1670773917030</created>
