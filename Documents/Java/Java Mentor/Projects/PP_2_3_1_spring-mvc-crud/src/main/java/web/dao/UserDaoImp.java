@@ -14,8 +14,6 @@ public class UserDaoImp implements UserDao {
   @PersistenceContext
   private EntityManager manager;
 
-  @Override
-  @Transactional
   public List<User> listUsers() {
 //    TypedQuery<User> query = manager.createQuery("User.getAll", User.class);
 

@@ -25,7 +25,6 @@ public class UserServiceImp implements UserService {
     dao.removeUser(id);
   }
 
-  @Override
   @Transactional
   public List<User> getListUsers() {
 
