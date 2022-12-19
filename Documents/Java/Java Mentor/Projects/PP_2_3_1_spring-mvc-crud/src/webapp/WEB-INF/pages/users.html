@@ -9,32 +9,36 @@
 
 <h2>List Users Welcome </h2>
 <form method="get" action="search">
-  <input type="text" name="keyword" />
+  <input type="text" name="keyword"/>
   <input type="submit" value="Search"/>
 </form>
-<h3><a href="/new">New User</a></h3>
+<br>
 <table border="1" cellpadding="5">
   <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Surname</th>
     <th>E-mail</th>
-    <th>Action</th>
+    <th><h3>Action</h3></th>
   </tr>
+  <tr>
+    <a href="/users/new">New user</a>
+  </tr>
+<br> <br>
   <tr th:each="user : ${users}">
     <td th:text="${user.getId()}"></td>
 
-    <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a></td>
+    <td th:text="${user.getName()}"></td>
 
     <td th:text="${user.getSurname()}"></td>
     <td th:text="${user.getEmail()}"></td>
-
     <td>
-      <a href="/users/new">Edit user</a>
+
+      <a href="/users/new">Update user</a>
 
       <a href="/delete?id=${user.id}">Delete</a>
     </td>
-    </tr>
+  </tr>
 
 
 </table>

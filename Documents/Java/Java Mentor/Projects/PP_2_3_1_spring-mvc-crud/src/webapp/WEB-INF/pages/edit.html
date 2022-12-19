@@ -6,19 +6,20 @@
   <title>Update Users</title>
 </head>
 <body>
-// изменить и проверить первую строку и окна ввода
-<form th:action="save" method="post" modelAttribute="user">
-  Name <form th:method="PATCH" th:action="name">
-  <label for="name">Enter name:</label>
-  <input type="text" th:field="*{name}" id="name"/>
-  <br><br>
-  Surname <form th:method="PATCH" th:action="surname">
-  <label for="lastName">Enter lastname:</label>
-  <input type="text" th:field="*{surname}" id="lastName"/>
-  <br><br>
-  Email <form th:method="PATCH" th:action="email">
-  <input type="text" th:field="*{email}" id="age"/>
-  <br><br>
+
+<form th:action="save" th:object="${user}">
+    <label for="name">Name </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br><br>
+    <label for="surname">Surname </label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br><br>
+    <label for="email">Email </label>
+    <input type="text" th:field="*{email}" id="email">
+    <br><br>
+
+    <input type="submit" value="Update">
+
 
 </form>
 
