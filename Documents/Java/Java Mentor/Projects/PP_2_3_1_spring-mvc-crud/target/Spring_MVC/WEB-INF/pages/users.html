@@ -13,22 +13,18 @@
   <input type="submit" value="Search"/>
 </form>
 <br>
-<table border="1" cellpadding="5">
+<table border="1">
   <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Surname</th>
     <th>E-mail</th>
+
+  <a href="/users/new">New user</a>
+    <th>Action</th>
+
   </tr>
-  <tr>
-    <h3>Action
-
-    <a href="/users/new">Edit user</a>
-
-    <a href="/delete?id=${user.id}">Delete</a>
-    </h3>
-  </tr>
-
+<br> <br>
   <tr th:each="user : ${users}">
     <td th:text="${user.getId()}"></td>
 
@@ -36,7 +32,10 @@
 
     <td th:text="${user.getSurname()}"></td>
     <td th:text="${user.getEmail()}"></td>
-
+    <td>
+        <a href="/users/{id}/update">Update</a>
+        <a href="/delete?id=${user.id}">Delete</a>
+    </td>
   </tr>
 
 

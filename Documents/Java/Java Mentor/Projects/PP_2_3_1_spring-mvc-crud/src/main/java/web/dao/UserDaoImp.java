@@ -15,11 +15,9 @@ public class UserDaoImp implements UserDao {
   private EntityManager manager;
 
   public List<User> listUsers() {
-//    TypedQuery<User> query = manager.createQuery("User.getAll", User.class);
 
     TypedQuery<User> query = manager.createQuery("from User", User.class);
-    List<User> allUsers = query.getResultList();
-    return allUsers;
+    return query.getResultList();
   }
 
   public void saveUser(User user) {
@@ -28,6 +26,12 @@ public class UserDaoImp implements UserDao {
 
   public void removeUser(long id) {
     manager.remove(id);
+  }
+
+  @Override
+  public User getUser(long id) {
+
+    return manager.find(User.class, id);
   }
 
 }

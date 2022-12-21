@@ -30,4 +30,10 @@ public class UserServiceImp implements UserService {
 
     return dao.listUsers();
   }
+
+  @Override
+  @Transactional
+  public User getUser(long id) {
+    return dao.getUser(id);
+  }
 }

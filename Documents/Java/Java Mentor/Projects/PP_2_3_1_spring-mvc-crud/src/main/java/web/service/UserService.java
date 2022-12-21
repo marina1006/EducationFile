@@ -9,4 +9,5 @@ public interface UserService {
 
     void removeUser(long id);
     List<User> getListUsers();
+    public User getUser(long id);
 }

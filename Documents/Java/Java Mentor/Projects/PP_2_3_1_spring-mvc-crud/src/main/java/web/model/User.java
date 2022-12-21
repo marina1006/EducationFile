@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-//@Query(name = "User.getAll", query = "SELECT c from User c")
+
 public class User {
 
    @Id
@@ -28,9 +28,9 @@ public class User {
 
    public User() {}
    
-   public User(String firstName, String lastName, String email) {
-      this.name = firstName;
-      this.surname = lastName;
+   public User(String name, String surname, String email) {
+      this.name = name;
+      this.surname = surname;
       this.email = email;
    }
 
