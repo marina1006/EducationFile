@@ -12,4 +12,5 @@ public interface UserDao {
    void removeUser(long id);
 
   public User getUser(long id);
+  public void update(long id, User user);
 }
