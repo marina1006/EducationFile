@@ -19,21 +19,21 @@ import web.service.UserService;
 @RequestMapping("/users")
 public class UserController {
 
-  private UserService service;
+  private final UserService service;
 
   @Autowired
   public UserController(UserService service) {
     this.service = service;
   }
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @GetMapping()
   public String showUsers(ModelMap model) {
     model.addAttribute("users", service.getListUsers());
     return "users"; //view
   }
 
   @GetMapping("/{id}")
-  public String show(ModelMap model, @PathVariable long id) {
+  public String show(@PathVariable long id, ModelMap model) {
     model.addAttribute("user", service.getUser(id));
     return "show"; //view
   }
@@ -43,22 +43,20 @@ public class UserController {
     return "new";
   }
   @GetMapping("/{id}/edit")
-  public String edit(@ModelAttribute("user") User user,ModelMap model) {
+  public String edit(ModelMap model, @PathVariable("id") long id) {
 
-    model.addAttribute("user", user);
+    model.addAttribute("user", service.getUser(id));
     return "edit";
   }
   @PostMapping()
   public String saveUsers(@ModelAttribute("user") User user) {
   service.saveUser(user);
-    return "redirect:/";
+    return "redirect:/users";
   }
   @PatchMapping("/{id}")
-  public String updateUsers(@ModelAttribute("user") User user, @PathVariable long id) {
-
-    //model.addAttribute("user",service.getUser(id));
+  public String updateUsers(@ModelAttribute("user") User user, @PathVariable("id") long id) {
     service.update(id,user);
-    return "redirect:/";
+    return "redirect:/users";
   }
   @DeleteMapping("/{id}")
   public String delete(@PathVariable("id") int id) {

@@ -18,13 +18,19 @@ public class UserDaoImp implements UserDao {
     TypedQuery<User> query = manager.createQuery("from User", User.class);
     return query.getResultList();
   }
+
   @Override
   public void saveUser(User user) {
-    manager.merge(user);
+
+//    manager.merge(user);
+    manager.persist(user);
   }
+
   @Override
   public void removeUser(long id) {
-    manager.remove(id);
+//    manager.remove(id);
+    manager.remove(manager.find(User.class, id));
+
   }
 
   @Override
@@ -32,11 +38,13 @@ public class UserDaoImp implements UserDao {
 
     return manager.find(User.class, id);
   }
+
   @Override
   public void update(long id, User user) {
-    user.setName(user.getName());
-    user.setSurname(user.getSurname());
-    user.setEmail(user.getEmail());
+//    user.setName(user.getName());
+//    user.setSurname(user.getSurname());
+//    user.setEmail(user.getEmail());
+    manager.merge(user);
   }
 
 }
