@@ -28,8 +28,8 @@ public class UserDaoImp implements UserDao {
 
   @Override
   public void removeUser(long id) {
-//    manager.remove(id);
-    manager.remove(manager.find(User.class, id));
+   // manager.remove(id);
+   manager.remove(manager.find(User.class, id));
 
   }
 
@@ -41,10 +41,11 @@ public class UserDaoImp implements UserDao {
 
   @Override
   public void update(long id, User user) {
+
 //    user.setName(user.getName());
 //    user.setSurname(user.getSurname());
 //    user.setEmail(user.getEmail());
-    manager.merge(user);
+   manager.merge(user);
   }
 
 }

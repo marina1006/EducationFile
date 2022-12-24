@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -66,6 +67,7 @@ public class WebConfig implements WebMvcConfigurer {
     resolver.setCharacterEncoding("UTF-8");
     resolver.setContentType("text/html; charset=UTF-8");
     registry.viewResolver(resolver);
+
   }
 
 
@@ -115,4 +117,5 @@ public class WebConfig implements WebMvcConfigurer {
 
     return em;
   }
+
 }
