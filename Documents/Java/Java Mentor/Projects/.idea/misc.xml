@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/PP_2_2_2_spring-mvc-master" />
+    <file type="web" url="file://$PROJECT_DIR$/PP_2_3_1_spring-mvc-crud" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/PP_1_1_3-4_JDBC/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_1_1_3-5_Hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_3_1_spring-mvc-crud/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_1_2_Spring_HelloWorld/PP_2_1_2_Spring_HelloWorld-master/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_2_2_spring-mvc-master/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_1_3_SpringBeans-master/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_2_1_spring_hibernate-master/2.2.1. spring_hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/PP_2_1_4_spring-types-of-wiring-master/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>

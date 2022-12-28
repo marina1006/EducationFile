@@ -1,5 +1,7 @@
-package web.controller;
+package com.example.spring.springboot.pp_springboot.controller;
 
+import com.example.spring.springboot.pp_springboot.model.User;
+import com.example.spring.springboot.pp_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,8 +12,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import web.model.User;
-import web.service.UserService;
 
 @Controller
 @RequestMapping("/users")
@@ -26,12 +26,12 @@ public class UserController {
 
   @GetMapping()
   public String showUsers(ModelMap model) {
-    model.addAttribute("users", service.getListUsers());
+    model.addAttribute("users", service.listUsers());
     return "users"; //view user of DAO
   }
 
   @GetMapping("/{id}")
-  public String show(@PathVariable long id, ModelMap model) {
+  public String show(@PathVariable Long id, ModelMap model) {
     model.addAttribute("user", service.getUser(id));
     return "show"; //1 id user of DAO
   }
@@ -41,7 +41,7 @@ public class UserController {
     return "new";
   }
   @GetMapping("/{id}/edit")
-  public String edit(ModelMap model, @PathVariable("id") long id) {
+  public String edit(ModelMap model, @PathVariable("id") Long id) {
     model.addAttribute("user", service.getUser(id));
     return "edit";
   }
@@ -50,14 +50,15 @@ public class UserController {
   service.saveUser(user);
     return "redirect:/users";
   }
-  @PatchMapping("/{id}")
-  public String updateUsers(@ModelAttribute("user") User user, @PathVariable("id") long id) {
-    service.update(id,user);
+  @PatchMapping("/{id}")//GetMapping
+  public String updateUsers(@PathVariable("id") Long id, ModelMap model) {
+    model.addAttribute("user", service.getUser(id));
     return "redirect:/users";
   }
   @DeleteMapping("/{id}")
-  public String delete(@PathVariable("id") long id) {
+  public String delete(@PathVariable("id") Long id) {
     service.removeUser(id);
     return "redirect:/users";
   }
+
 }

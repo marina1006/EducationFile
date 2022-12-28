@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Projects.iml" filepath="$PROJECT_DIR$/.idea/Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_1_1_3-4_JDBC/TaskJDBC.iml" filepath="$PROJECT_DIR$/PP_1_1_3-4_JDBC/TaskJDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_1_1_3-5_Hibernate/TaskJDBC (1).iml" filepath="$PROJECT_DIR$/PP_1_1_3-5_Hibernate/TaskJDBC (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_1_3_SpringBeans-master/spring-beans.iml" filepath="$PROJECT_DIR$/PP_2_1_3_SpringBeans-master/spring-beans.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_1_2_Spring_HelloWorld/PP_2_1_2_Spring_HelloWorld-master/spring-helloworld.iml" filepath="$PROJECT_DIR$/PP_2_1_2_Spring_HelloWorld/PP_2_1_2_Spring_HelloWorld-master/spring-helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_2_1_spring_hibernate-master/2.2.1. spring_hibernate/spring-hibernate.iml" filepath="$PROJECT_DIR$/PP_2_2_1_spring_hibernate-master/2.2.1. spring_hibernate/spring-hibernate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_3_1_spring-mvc-crud/spring-mvc.iml" filepath="$PROJECT_DIR$/PP_2_3_1_spring-mvc-crud/spring-mvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_2_2_spring-mvc-master/spring-mvc (1).iml" filepath="$PROJECT_DIR$/PP_2_2_2_spring-mvc-master/spring-mvc (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/PP_2_1_4_spring-types-of-wiring-master/spring-types-of-wiring.iml" filepath="$PROJECT_DIR$/PP_2_1_4_spring-types-of-wiring-master/spring-types-of-wiring.iml" />
+    </modules>
+  </component>
+</project>

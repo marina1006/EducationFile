@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring-beans" />
+        <module name="TaskJDBC" />
+        <module name="spring-types-of-wiring" />
+        <module name="spring-mvc" />
+        <module name="spring-mvc (1)" />
+        <module name="spring-hibernate" />
+        <module name="spring-helloworld" />
+        <module name="TaskJDBC (1)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-beans" target="11" />
+      <module name="spring-helloworld" target="11" />
+      <module name="spring-hibernate" target="1.8" />
+      <module name="spring-mvc" target="11" />
+      <module name="spring-mvc (1)" target="11" />
+      <module name="spring-types-of-wiring" target="11" />
+      <module name="TaskJDBC" target="11" />
+      <module name="TaskJDBC (1)" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
