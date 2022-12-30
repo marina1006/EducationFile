@@ -3,6 +3,8 @@ package ru.kata.spring.boot_security.demo.model;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,7 +13,8 @@ import org.springframework.security.core.GrantedAuthority;
 public class Role implements GrantedAuthority {
 
   @Id
-  @Column(name = "id", nullable = false)
+  @Column
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   public Long getId() {
@@ -42,7 +45,7 @@ private String name;
 
   @Override
   public String getAuthority() {
-    return null;
+    return getName();
   }
 
   @Override
