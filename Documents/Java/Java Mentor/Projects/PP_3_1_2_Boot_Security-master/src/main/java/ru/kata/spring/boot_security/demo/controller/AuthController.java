@@ -28,20 +28,20 @@ public class AuthController {
 
   @GetMapping("/login")
   public String loginPage() {
-    return "auth/login";
+    return "login";
   }
 
   @GetMapping("/registration")
   public String registrationPage(@ModelAttribute("user") User user) {
-    return "auth/registration";
+    return "registration";
   }
 
   @PostMapping("/registration")
-  public String performRegistration(@ModelAttribute("person") User user) {
+  public String performRegistration(@ModelAttribute("user") User user) {
 
     userService.register(user);
 
-    return "redirect:/auth/login";
+    return "redirect:/login";
   }
   @GetMapping("/showUserInfo")
   public String showUserInfo() {

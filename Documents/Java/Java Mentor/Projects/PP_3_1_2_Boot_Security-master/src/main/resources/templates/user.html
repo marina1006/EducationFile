@@ -5,7 +5,13 @@
 </head>
 <body>
 <h1>User, welcome spring boot security page!</h1>
-
+<a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Edit</a>
+<p th:text="${user.getName() + ', ' + user.getSurname()}">VALUE</p>
+<p th:text="${'Email: ' + user.getEmail()}">VALUE</p>
+<p th:text="${user.getId()}">VALUE</p>
+<form action="/logout" method="POST">
+    <button type="submit">logout</button>
+</form>
 
 </body>
 </html>
