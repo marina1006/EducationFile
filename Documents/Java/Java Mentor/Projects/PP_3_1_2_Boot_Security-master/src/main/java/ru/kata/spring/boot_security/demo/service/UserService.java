@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -63,20 +64,20 @@ public class UserService implements UserDetailsService {
   @Transactional
   public void register(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    Role userRole = new Role(2L, "ROLE_USER");//roleRepository
-
-    user.addRole(userRole);
+//    Role userRole = new Role(2L, "ROLE_USER");//roleRepository
+//
+//    user.addRole(userRole);
     userRepository.save(user);
   }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = userRepository.findByUsername(username);
+   User user = userRepository.findByUsername(username);
 
     if (user == null) {
       throw new UsernameNotFoundException("User not found");
     }
 
-    return user;
+    return  user;
   }
 }

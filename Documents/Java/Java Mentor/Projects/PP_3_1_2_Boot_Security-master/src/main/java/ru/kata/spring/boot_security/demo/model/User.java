@@ -52,7 +52,7 @@ public class User implements UserDetails {
     roles.add(role);
   }
 
-  public User() {
+  public User(User user) {
   }
 
   public User(Long id, String name, String surname, String email, String login,
@@ -150,5 +150,8 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+  public User getUser() {
+    return User.this;
   }
 }

@@ -2,35 +2,35 @@ package ru.kata.spring.boot_security.demo.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     public WebSecurityConfig(SuccessUserHandler successUserHandler,
-        UserDetailsService userDetailsService) {
+       @Lazy UserService userService) {
         this.successUserHandler = successUserHandler;
-        this.userDetailsService = userDetailsService;
+        this.userService = userService;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // конфигурируем авторизацию
         http
-                .csrf().disable()
+//                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/index").permitAll()
                 .anyRequest().authenticated()
@@ -50,27 +50,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
 
     }
-    // настраиваем секьюрности
+    // настраиваем секьюрность
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-            .passwordEncoder(getPasswordEncoder());
+        auth.userDetailsService(userService)
+            .passwordEncoder(passwordEncoder());
     }
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
     @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return  NoOpPasswordEncoder.getInstance();// хранение в незашифрованном виде
+    public PasswordEncoder passwordEncoder() {
+        return  new BCryptPasswordEncoder();// хранение в незашифрованном виде
     }
 }
