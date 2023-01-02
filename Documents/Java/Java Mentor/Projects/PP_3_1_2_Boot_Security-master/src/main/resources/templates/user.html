@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="UTF-8">
     <title>Spring Security Example</title>
 </head>
 <body>
 <h1>User, welcome spring boot security page!</h1>
-<a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Edit</a>
-<p th:text="${user.getName() + ', ' + user.getSurname()}">VALUE</p>
-<p th:text="${'Email: ' + user.getEmail()}">VALUE</p>
-<p th:text="${user.getId()}">VALUE</p>
+<form  method="post" role ="form" th:action="/process_login">
+    <input type="hidden" th:username="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <label for="username">Введите имя пользователя: </label>
+    <input type="text" username="username" id="username"/>
+    <br><br>
+    <label for="password">Введите пароль: </label>
+    <input type="password" username="password" id="password"/>
+    <br><br>
+    <input type="submit" value="Login"/>
+    <br><br>
+    <div th:if="${param.error}" style="color: red">
+        Неправильные имя или пароль
+    </div>
+</form>
 <form action="/logout" method="POST">
     <button type="submit">logout</button>
 </form>

@@ -29,16 +29,15 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "name")
-  private String name;
+  @Column(name = "username")
+  private String username;
 
   @Column(name = "surname")
   private String surname;
 
   @Column(name = "email")
   private String email;
-  @Column(name = "login")
-  private String login;
+
   @Column(name = "password")
   private String password;
   @ManyToMany(fetch = FetchType.LAZY)
@@ -48,30 +47,31 @@ public class User implements UserDetails {
       inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   private Set<Role> roles = new HashSet<>();
+
+  public User() {
+
+  }
+
   public void addRole(Role role) {
     roles.add(role);
   }
 
-  public User(User user) {
-  }
-
-  public User(Long id, String name, String surname, String email, String login,
+  public User(Long id, String name, String surname, String email,
       String password, Set<Role> roles) {
     this.id = id;
-    this.name = name;
+    this.username = name;
     this.surname = surname;
     this.email = email;
-    this.login = login;
     this.password = password;
     this.roles = roles;
   }
 
-  public String getLogin() {
-    return login;
+  public Set<Role> getRoles() {
+    return roles;
   }
 
-  public void setLogin(String login) {
-    this.login = login;
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
   }
 
   public void setPassword(String password) {
@@ -86,12 +86,12 @@ public class User implements UserDetails {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getSurname() {
@@ -113,7 +113,7 @@ public class User implements UserDetails {
   @Override
   public String toString() {
     return
-        name + surname + email;
+        username + surname + email;
   }
 
   @Override
@@ -125,11 +125,6 @@ public class User implements UserDetails {
   @Override
   public String getPassword() {
     return password;
-  }
-
-  @Override
-  public String getUsername() {
-    return getLogin();
   }
 
   @Override
@@ -153,5 +148,5 @@ public class User implements UserDetails {
   }
   public User getUser() {
     return User.this;
-  }
+  } // after fix config
 }
