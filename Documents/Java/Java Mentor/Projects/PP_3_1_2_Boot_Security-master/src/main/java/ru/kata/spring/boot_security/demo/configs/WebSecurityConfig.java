@@ -3,18 +3,17 @@ package ru.kata.spring.boot_security.demo.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final SuccessUserHandler successUserHandler;
@@ -24,13 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       @Lazy UserService userService) {
     this.successUserHandler = successUserHandler;
     this.userService = userService;
+
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     // конфигурируем авторизацию
     http
-//        .csrf().disable()
+        .csrf().disable()
         .authorizeRequests()
 
         .antMatchers("/admin/**").hasRole("ADMIN")
@@ -39,8 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated()
         .and()
         .formLogin()
+        .passwordParameter("password")
+        .usernameParameter("username")
         .successHandler(successUserHandler).permitAll()
-//        .failureUrl("/login?error")
         .and()
         .logout()
         .logoutUrl("/logout").permitAll();
@@ -48,14 +49,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   // настраиваем секьюрность
+//  @Override
+//  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//    auth.userDetailsService(userService)
+//        .passwordEncoder(passwordEncoder());
+//  }
+//
+//  @Bean
+//  public PasswordEncoder passwordEncoder() {
+//    return new BCryptPasswordEncoder();// хранение в зашифрованном виде
+//  }
+
+  @Bean
   @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService)
-        .passwordEncoder(passwordEncoder());
+  public UserDetailsService userDetailsService() {
+    return userService;
+  }
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();// хранение в зашифрованном виде
+  public DaoAuthenticationProvider daoAuthenticationProvider() {
+    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+    authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+    authenticationProvider.setUserDetailsService(userDetailsService());
+    return authenticationProvider;
   }
 }

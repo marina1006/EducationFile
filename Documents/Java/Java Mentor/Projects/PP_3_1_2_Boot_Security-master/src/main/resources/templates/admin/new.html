@@ -9,7 +9,6 @@
 
 
 <form th:method="POST" th:action="@{/templates/admin}" th:object="${user}">
-  <input type="hidden" th:username="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
   <label for="name">Enter name: </label>
   <input type="text" th:field="*{username}" id="name"/>
@@ -19,6 +18,8 @@
   <br><br>
   <label for="email">Enter email: </label>
   <input type="text" th:field="*{email}" id="email"/>
+  <br><br>
+  <input type="submit" value="Ok"/>
   <br><br>
 </form>
 

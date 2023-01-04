@@ -33,12 +33,12 @@ public class AuthController {
 
     this.roleService = roleService;
   }
-  @GetMapping("/admin")
+  @GetMapping()
   public String showUsers(ModelMap model) {
 
     model.addAttribute("user", userService.listUsers());
 
-    return "admin/index"; //view byUsername of DAO
+    return "index"; //view byUsername of DAO
   }
   @GetMapping("/admin/{id}")
   public String show(@PathVariable Long id, ModelMap model) {
@@ -58,26 +58,26 @@ public class AuthController {
     return "admin/edit";
   }
 
-  @PostMapping("/")
+  @PostMapping()
   public String saveUsers(@ModelAttribute("user") User user) {
 
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
     user.setRoles((Set<Role>) roleService.getRole(1L));
     userService.saveUser(user);
-    return "redirect:/admin";
+    return "index";
   }
 
   @PatchMapping("/{id}")
   public String updateUsers(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
     userService.update(id,user);
-    return "redirect:/admin";
+    return "index";
   }
 
   @DeleteMapping("/admin/{id}")
   public String delete(@PathVariable("id") Long id) {
     userService.removeUser(id);
-    return "redirect:/admin";
+    return "index";
   }
 
   @GetMapping("/user")
