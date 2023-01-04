@@ -8,7 +8,7 @@
 <body>
 
 
-<form th:method="POST" th:action="@{user}" th:object="${user}">
+<form th:method="POST" th:action="@{/templates/admin}" th:object="${user}">
   <input type="hidden" th:username="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
   <label for="name">Enter name: </label>
@@ -20,7 +20,10 @@
   <label for="email">Enter email: </label>
   <input type="text" th:field="*{email}" id="email"/>
   <br><br>
-  <input type="submit" value="Add"/>
+</form>
+
+<form action="/logout" method="POST">
+  <button type="submit">logout</button>
 </form>
 
 </body>

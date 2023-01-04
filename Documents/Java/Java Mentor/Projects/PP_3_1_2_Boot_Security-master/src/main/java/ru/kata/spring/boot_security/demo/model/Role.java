@@ -1,19 +1,21 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
+
 @Entity
-@Table(name = "roles")
+@Table
 public class Role implements GrantedAuthority {
 
   @Id
-  @Column
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
@@ -24,8 +26,9 @@ public class Role implements GrantedAuthority {
   public void setId(Long id) {
     this.id = id;
   }
-@Column
-private String name;
+
+  @Column
+  private String name;
 
   public String getName() {
     return name;
@@ -34,8 +37,17 @@ private String name;
   public void setName(String name) {
     this.name = name;
   }
-
+  @ManyToMany(mappedBy = "roles")
+  private Set<User> users;
   public Role() {
+  }
+
+  public Set<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(Set<User> users) {
+    this.users = users;
   }
 
   public Role(Long id, String name) {
@@ -74,6 +86,6 @@ private String name;
 
   @Override
   public String toString() {
-    return  name;
+    return name;
   }
 }

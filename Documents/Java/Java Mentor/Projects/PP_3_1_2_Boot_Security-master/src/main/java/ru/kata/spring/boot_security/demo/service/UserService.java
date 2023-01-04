@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
@@ -59,15 +58,6 @@ public class UserService implements UserDetailsService {
 
   public User findByUsername(String name) {
     return listUsers().stream().filter(user -> user.getUsername().equals(name)).findAny().orElse(null);
-  }
-
-  @Transactional
-  public void register(User user) {
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
-    Role userRole = new Role(2L, "ROLE_USER");//roleRepository
-
-    user.setRoles((Set<Role>) userRole);
-    userRepository.save(user);
   }
 
   @Override

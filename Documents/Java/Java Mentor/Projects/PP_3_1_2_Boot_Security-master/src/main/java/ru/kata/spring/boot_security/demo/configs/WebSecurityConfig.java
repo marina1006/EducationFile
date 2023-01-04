@@ -14,50 +14,48 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private final SuccessUserHandler successUserHandler;
-    private final UserService userService;
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler,
-       @Lazy UserService userService) {
-        this.successUserHandler = successUserHandler;
-        this.userService = userService;
-    }
+  private final SuccessUserHandler successUserHandler;
+  private final UserService userService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // конфигурируем авторизацию
-        http
-//            .csrf().disable()
-            .authorizeRequests()
+  public WebSecurityConfig(SuccessUserHandler successUserHandler,
+      @Lazy UserService userService) {
+    this.successUserHandler = successUserHandler;
+    this.userService = userService;
+  }
 
-//            .antMatchers("/admin").hasRole("ADMIN")
-            .antMatchers("/index", "/user", "/error").permitAll()
-            .anyRequest().hasAnyRole("USER", "ADMIN")
-            .and()
-            .formLogin()
-            .loginProcessingUrl("/process_login")
-            .successHandler(successUserHandler)
-            .failureUrl("/login?error")
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .invalidateHttpSession(true)
-            .clearAuthentication(true)
-            .deleteCookies("JSESSIONID")
-            .logoutSuccessUrl("/user");
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // конфигурируем авторизацию
+    http
+//        .csrf().disable()
+        .authorizeRequests()
 
-    }
-    // настраиваем секьюрность
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers( "/user").hasRole("USER")
+        .antMatchers("/","/index").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .formLogin()
+        .successHandler(successUserHandler).permitAll()
+//        .failureUrl("/login?error")
+        .and()
+        .logout()
+        .logoutUrl("/logout").permitAll();
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-            .passwordEncoder(passwordEncoder());
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return  new BCryptPasswordEncoder();// хранение в незашифрованном виде
-    }
+  }
+
+  // настраиваем секьюрность
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userService)
+        .passwordEncoder(passwordEncoder());
+  }
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();// хранение в зашифрованном виде
+  }
 }
