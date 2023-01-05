@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +34,12 @@ public class AuthController {
 
     this.roleService = roleService;
   }
-  @GetMapping()
+  @GetMapping("/admin")
   public String showUsers(ModelMap model) {
 
     model.addAttribute("user", userService.listUsers());
 
-    return "index"; //view byUsername of DAO
+    return "admin/index"; //view byUsername of DAO
   }
   @GetMapping("/admin/{id}")
   public String show(@PathVariable Long id, ModelMap model) {
@@ -58,26 +59,26 @@ public class AuthController {
     return "admin/edit";
   }
 
-  @PostMapping()
+  @PostMapping("/admin")
   public String saveUsers(@ModelAttribute("user") User user) {
 
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
     user.setRoles((Set<Role>) roleService.getRole(1L));
     userService.saveUser(user);
-    return "index";
+    return "admin/index";
   }
 
-  @PatchMapping("/{id}")
+  @PatchMapping("/admin/{id}")
   public String updateUsers(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
     userService.update(id,user);
-    return "index";
+    return "admin/index";
   }
 
   @DeleteMapping("/admin/{id}")
   public String delete(@PathVariable("id") Long id) {
     userService.removeUser(id);
-    return "index";
+    return "admin/index";
   }
 
   @GetMapping("/user")

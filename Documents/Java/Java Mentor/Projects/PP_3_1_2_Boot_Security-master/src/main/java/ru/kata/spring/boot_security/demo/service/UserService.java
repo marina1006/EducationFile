@@ -18,21 +18,18 @@ public class UserService implements UserDetailsService {
   @Autowired
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  public UserService(UserRepository userRepository, RoleRepository roleRepository,
-      BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public UserService(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
-
+  @Transactional(readOnly = true)
   public List<User> listUsers() {
 
     return userRepository.findAll();
 
   }
-
+  @Transactional(readOnly = true)
   public User getUser(Long id) {
 
     return userRepository.getById(id);
@@ -40,36 +37,36 @@ public class UserService implements UserDetailsService {
 
   @Transactional
   public void saveUser(User user) {
-    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
     userRepository.save(user);
   }
-
+@Transactional
   public void removeUser(Long id) {
 
     userRepository.deleteById(id);
 
   }
-
+  @Transactional
   public void update(Long id, User user) {
-    user.setUsername(user.getUsername());
-    user.setSurname(user.getSurname());
-    user.setEmail(user.getEmail());
+    user.setId(id);
+    userRepository.save(user);
   }
-
+  @Transactional
   public User findByUsername(String name) {
     return listUsers().stream().filter(user -> user.getUsername().equals(name)).findAny()
         .orElse(null);
   }
 
   @Override
+  @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     User user = userRepository.findByUsername(username);
 
     if (user == null) {
       throw new UsernameNotFoundException("User not found");
     }
-
+    System.out.println(user.getRoles());
     return user;
   }
 

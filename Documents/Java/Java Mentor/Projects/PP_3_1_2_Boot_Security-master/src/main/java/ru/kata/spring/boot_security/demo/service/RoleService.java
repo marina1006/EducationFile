@@ -24,8 +24,8 @@ public class RoleService {
   }
 
   public Role getRole(Long id) {
-    Optional<Role> role = Optional.of(roleRepository.getById(id));
-    return role.orElse(null);
+   Role role = roleRepository.getById(id);
+    return role;
   }
 
   public void saveRole(Role role) {

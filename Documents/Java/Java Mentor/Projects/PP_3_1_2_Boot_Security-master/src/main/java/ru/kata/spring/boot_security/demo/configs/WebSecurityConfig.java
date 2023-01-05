@@ -1,15 +1,16 @@
 package ru.kata.spring.boot_security.demo.configs;
 
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
@@ -48,33 +49,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   }
 
-  // настраиваем секьюрность
-//  @Override
-//  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    auth.userDetailsService(userService)
-//        .passwordEncoder(passwordEncoder());
-//  }
-//
-//  @Bean
-//  public PasswordEncoder passwordEncoder() {
-//    return new BCryptPasswordEncoder();// хранение в зашифрованном виде
-//  }
 
   @Bean
-  @Override
-  public UserDetailsService userDetailsService() {
-    return userService;
-  }
-  @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
   @Bean
   public DaoAuthenticationProvider daoAuthenticationProvider() {
     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
-    authenticationProvider.setUserDetailsService(userDetailsService());
+    authenticationProvider.setPasswordEncoder(passwordEncoder());
+    authenticationProvider.setUserDetailsService(userService);
     return authenticationProvider;
   }
+
+  @Bean
+  public JdbcUserDetailsManager users(DataSource dataSource) {
+    JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+    return jdbcUserDetailsManager;
+  }
+  
 }
