@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
 
   }
 
-  public User update(Long id, User user) {
+  public User update(User user,Long id) {
     user.setId(id);
     dao.saveUser(user);
     return user;

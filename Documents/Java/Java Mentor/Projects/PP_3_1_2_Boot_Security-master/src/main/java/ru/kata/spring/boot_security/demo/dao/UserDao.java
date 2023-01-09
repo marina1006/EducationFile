@@ -13,7 +13,7 @@ public interface UserDao {
 
   User getUser(Long id);
 
-  User update(Long id, User user);
+  User update(User user,Long id);
 
 
 

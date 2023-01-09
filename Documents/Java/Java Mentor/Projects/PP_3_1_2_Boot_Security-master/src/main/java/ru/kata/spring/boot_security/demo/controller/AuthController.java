@@ -59,7 +59,7 @@ public class AuthController {
 
   @PatchMapping("/admin/{id}")
   public String updateUsers(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-    userService.update(id,user);
+    userService.update(user,id);
     return "admin/index";
   }
 

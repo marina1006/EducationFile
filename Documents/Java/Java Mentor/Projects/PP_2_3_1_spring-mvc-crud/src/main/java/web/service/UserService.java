@@ -5,11 +5,13 @@ import web.model.User;
 
 public interface UserService {
 
-    void saveUser(User user);
+  void saveUser(User user);
 
-    void removeUser(long id);
-    List<User> getListUsers();
-    public User getUser(long id);
+  void removeUser(long id);
 
-    public void update(long id, User user);
+  List<User> getListUsers();
+
+  User getUser(long id);
+
+  void update(long id, User user);
 }

@@ -1,0 +1,39 @@
+DELETE http://94.198.50.185:7081/api/users/3
+Content-Type: application/json
+
+<> 2023-01-09T004700.400.txt
+
+###
+
+PUT http://94.198.50.185:7081/api/users
+Content-Type: application/json
+id: 3,
+name: "Thomas",
+lastName: "Shelby",
+age: 23
+}:
+
+<> 2023-01-09T004659-1.400.html
+
+###
+
+POST http://94.198.50.185:7081/api/users
+Content-Type: application/json
+{:
+id: 3,
+name: "James",
+lastName: "Brown",
+age: 23
+}:
+
+<> 2023-01-09T004659.400.html
+
+###
+
+GET http://94.198.50.185:7081/api/users
+Content-Type: application/json
+
+<> 2023-01-09T004659.200.json
+
+###
+

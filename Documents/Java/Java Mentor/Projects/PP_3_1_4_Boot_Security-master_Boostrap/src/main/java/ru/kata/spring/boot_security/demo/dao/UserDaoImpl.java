@@ -48,9 +48,6 @@ public class UserDaoImpl implements UserDao {
   public void update( Long id,User user) {
 
     user.setId(user.getId());
-    user.setUsername(user.getUsername());
-    user.setSurname(user.getSurname());
-    user.setEmail(user.getEmail());
 
     user.setPassword(
         passwordEncoder.matches(user.getPassword(), user.getPassword()) ?

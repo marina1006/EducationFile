@@ -4,12 +4,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.User;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   @Transactional
-  public User update(Long id, User user) {
+  public User update(User user, Long id) {
 
     user.setId(user.getId());
     user.setPassword(
