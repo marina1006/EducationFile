@@ -13,6 +13,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -67,8 +68,11 @@
       <recent name="C:\Users\diana\Documents\Java\Java Mentor\Projects\PP_3_1_2_Boot_Security-master\src\main\resources\templates\admin" />
       <recent name="C:\Users\diana\Documents\Java\Java Mentor\Projects\PP_3_1_2_Boot_Security-master\src\main\resources\templates" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="ru.kata.spring.boot_security.demo.dao" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringBootSecurityDemoApplication (2)">
+  <component name="RunManager" selected="Spring Boot.SpringBootSecurityDemoApplication">
     <configuration name="SpringBootSecurityDemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="PP_3_1_2_Boot_Security-master_Boostrap" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kata.spring.boot_security.demo.SpringBootSecurityDemoApplication" />
@@ -114,6 +118,7 @@
       <workItem from="1672934252321" duration="13133000" />
       <workItem from="1673000258581" duration="2038000" />
       <workItem from="1673027667578" duration="1538000" />
+      <workItem from="1673252802577" duration="7469000" />
     </task>
     <servers />
   </component>
