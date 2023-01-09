@@ -1,5 +1,0 @@
-Admin:
-Ivan
-100
-User -  логины в панели админов - username, password 123
-https://storyxpress.co/video/lcks95sw2kwsdkcts - видео, если не откроется в корне проекта
