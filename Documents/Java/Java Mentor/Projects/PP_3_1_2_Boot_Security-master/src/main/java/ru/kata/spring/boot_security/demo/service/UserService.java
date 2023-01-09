@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import java.security.Principal;
 import java.util.List;
+import javax.security.auth.x500.X500Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +15,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 @Service
 public class UserService implements UserDetailsService {
-  @Autowired
+
   private final UserDao dao;
 
   public UserService(UserDao dao) {
@@ -32,10 +34,10 @@ public class UserService implements UserDetailsService {
   }
 
   @Transactional
-  public void saveUser(User user) {
+  public User saveUser(User user) {
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
-    dao.saveUser(user);
+   return dao.saveUser(user);
   }
 
   public void removeUser(Long id) {
@@ -44,9 +46,10 @@ public class UserService implements UserDetailsService {
 
   }
 
-  public void update(Long id, User user) {
+  public User update(Long id, User user) {
     user.setId(id);
     dao.saveUser(user);
+    return user;
   }
 
   public User findByUsername(String name) {
@@ -57,7 +60,7 @@ public class UserService implements UserDetailsService {
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = dao.findByUsername(username);
+   User user = findByUsername(username);
 
     if (user == null) {
       throw new UsernameNotFoundException("User not found");

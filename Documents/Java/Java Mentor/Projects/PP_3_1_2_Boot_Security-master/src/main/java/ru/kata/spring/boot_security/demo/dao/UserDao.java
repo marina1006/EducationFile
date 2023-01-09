@@ -7,14 +7,14 @@ public interface UserDao {
 
   List<User> listUsers();
 
-  void saveUser(User user);
+  User saveUser(User user);
 
   void removeUser(Long id);
 
-  public User getUser(Long id);
+  User getUser(Long id);
 
-  public void update(Long id, User user);
+  User update(Long id, User user);
 
-  User findByUsername(String username);
+
 
 }
