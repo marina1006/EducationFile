@@ -23,13 +23,13 @@ public class UserService implements UserDetailsService {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
   }
-  @Transactional(readOnly = true)
+
   public List<User> listUsers() {
 
     return userRepository.findAll();
 
   }
-  @Transactional(readOnly = true)
+
   public User getUser(Long id) {
 
     return userRepository.getById(id);
@@ -41,18 +41,18 @@ public class UserService implements UserDetailsService {
 
     userRepository.save(user);
   }
-@Transactional
+
   public void removeUser(Long id) {
 
     userRepository.deleteById(id);
 
   }
-  @Transactional
+
   public void update(Long id, User user) {
     user.setId(id);
     userRepository.save(user);
   }
-  @Transactional
+
   public User findByUsername(String name) {
     return listUsers().stream().filter(user -> user.getUsername().equals(name)).findAny()
         .orElse(null);
