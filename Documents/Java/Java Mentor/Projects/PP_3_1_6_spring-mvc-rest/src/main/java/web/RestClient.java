@@ -1,5 +1,7 @@
 package web;
 
+import static org.springframework.http.HttpHeaders.COOKIE;
+
 import java.util.List;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -28,7 +30,7 @@ public class RestClient {
 
     HttpEntity<Object> requestEntity = new HttpEntity<>(headers);
 
-
+    headers.add("JSESSIONID", COOKIE);
 
     User user = new User();
     user.setId(3L);
@@ -51,12 +53,9 @@ public class RestClient {
         HttpMethod.DELETE,
         requestEntity,
         String.class);
-    HttpStatus statusCode = responseEntity.getStatusCode();
-    System.out.println("status code - " + statusCode);
-    String userDetails = responseEntity.getBody();
-    System.out.println("response body - " + userDetails);
-    HttpHeaders responseHeaders = responseEntity.getHeaders();
-    System.out.println("response Headers - " + responseHeaders);
+
+    System.out.println( responseEntity.getBody());
+
   }
 
   private static void updateUserByExchangeMethod(HttpEntity<Object> requestEntity) {
@@ -64,12 +63,7 @@ public class RestClient {
         HttpMethod.PUT,
         requestEntity,
         String.class);
-    HttpStatus statusCode = responseEntity.getStatusCode();
-    System.out.println("status code - " + statusCode);
-    String userDetails = responseEntity.getBody();
-    System.out.println("response body - " + userDetails);
-    HttpHeaders responseHeaders = responseEntity.getHeaders();
-    System.out.println("response Headers - " + responseHeaders);
+    System.out.println( responseEntity.getBody());
   }
 
   private static void addUserByExchangeMethod(HttpEntity<Object> requestEntity) {
@@ -77,12 +71,7 @@ public class RestClient {
         HttpMethod.POST,
         requestEntity,
         User.class);
-    HttpStatus statusCode = responseEntity.getStatusCode();
-    System.out.println("status code - " + statusCode);
-    User userDetails = responseEntity.getBody();
-    System.out.println("response body - " + userDetails);
-    HttpHeaders responseHeaders = responseEntity.getHeaders();
-    System.out.println("response Headers - " + responseHeaders);
+    System.out.println( responseEntity.getBody());
   }
 
 
@@ -91,12 +80,7 @@ public class RestClient {
         HttpMethod.GET,
         requestEntity,
         List.class);
-    HttpStatus statusCode = responseEntity.getStatusCode();
-    System.out.println("status code - " + statusCode);
-    List user = responseEntity.getBody();
-    System.out.println("response body - " + user);
-    HttpHeaders responseHeaders = responseEntity.getHeaders();
-    System.out.println("response Headers - " + responseHeaders);
+    System.out.println( responseEntity.getBody());
 
   }
 
