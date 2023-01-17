@@ -13,6 +13,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -51,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PP_3_1_4_Boot_Security-master_Boostrap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39425287" />
@@ -67,10 +68,27 @@
       <recent name="C:\Users\diana\Documents\Java\Java Mentor\Projects\PP_3_1_2_Boot_Security-master\src\main\resources\templates\admin" />
       <recent name="C:\Users\diana\Documents\Java\Java Mentor\Projects\PP_3_1_2_Boot_Security-master\src\main\resources\templates" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="ru.kata.spring.boot_security.demo.dao" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringBootSecurityDemoApplication">
+  <component name="RunManager" selected="Spring Boot.SpringBootSecurityDemoApplication (3)">
     <configuration name="SpringBootSecurityDemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="PP_3_1_2_Boot_Security-master_Boostrap" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kata.spring.boot_security.demo.SpringBootSecurityDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootSecurityDemoApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PP_3_1_3_Boot_Security-master" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kata.spring.boot_security.demo.SpringBootSecurityDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootSecurityDemoApplication (3)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PP_3_1_2_Boot_Security-master" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kata.spring.boot_security.demo.SpringBootSecurityDemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -105,7 +123,11 @@
       <workItem from="1672831717300" duration="18774000" />
       <workItem from="1672912690079" duration="2314000" />
       <workItem from="1672934252321" duration="13133000" />
-      <workItem from="1673000258581" duration="2150000" />
+      <workItem from="1673000258581" duration="2038000" />
+      <workItem from="1673027667578" duration="1538000" />
+      <workItem from="1673252802577" duration="17509000" />
+      <workItem from="1673890800476" duration="6919000" />
+      <workItem from="1673970317317" duration="9053000" />
     </task>
     <servers />
   </component>

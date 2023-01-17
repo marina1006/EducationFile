@@ -6,17 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot_security-demo" />
-        <module name="PP_3_1_2_Boot_Security-master_Boostrap" />
-        <module name="PP_3_1_3_Boot_Security-master" />
+        <module name="PP_3_1_2_Boot_Security-master" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PP_3_1_2_Boot_Security-master" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="PP_3_1_2_Boot_Security-master_Boostrap" options="-parameters" />
-      <module name="PP_3_1_3_Boot_Security-master" options="-parameters" />
-      <module name="spring-boot_security-demo" options="-parameters" />
+      <module name="PP_3_1_2_Boot_Security-master" options="-parameters" />
     </option>
   </component>
 </project>

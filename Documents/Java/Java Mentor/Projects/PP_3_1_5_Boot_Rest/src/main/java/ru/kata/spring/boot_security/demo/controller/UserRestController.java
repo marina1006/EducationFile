@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.model.User;
 
 @RestController
-@RequestMapping("/userAuth")
+@RequestMapping("/user")
 public class UserRestController {
 
-  @GetMapping()
+  @GetMapping("/userAuth")
   public ResponseEntity<User> show(@AuthenticationPrincipal User user) {
 
     return ResponseEntity.ok(user);

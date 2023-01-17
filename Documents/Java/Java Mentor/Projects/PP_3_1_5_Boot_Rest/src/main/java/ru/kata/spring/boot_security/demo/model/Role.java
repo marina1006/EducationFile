@@ -1,12 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
@@ -20,6 +15,11 @@ public class Role implements GrantedAuthority {
   private String name;
 
   public Role() {
+  }
+
+  public Role(Long id, String name) {
+    this.id = id;
+    this.name = name;
   }
 
   public Long getId() {

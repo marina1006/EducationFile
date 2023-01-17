@@ -3,22 +3,17 @@ package ru.kata.spring.boot_security.demo.model;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
+@NamedEntityGraph(
+    name = "user-entity-graph",
+    attributeNodes = {
+        @NamedAttributeNode("roles")})
 public class User implements UserDetails {
 
   @Id
@@ -76,7 +71,9 @@ public class User implements UserDetails {
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
-
+  public void addRole(Role role) {
+    roles.add(role);
+  }
   public void setPassword(String password) {
     this.password = password;
   }
