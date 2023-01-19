@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +33,9 @@ public class User implements UserDetails {
 
   @Column(name = "password")
   private String password;
+
   @ManyToMany(fetch = FetchType.LAZY)
+  @JsonIgnore
   @JoinTable(name = "users_roles",
       joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -40,18 +43,6 @@ public class User implements UserDetails {
 
   public User() {
 
-  }
-
-  public User(String username, String password) {
-    this.username = username;
-    this.password = password;
-  }
-
-  public User(String username, String password,
-      Set<Role> roles) {
-    this.username = username;
-    this.password = password;
-    this.setRoles(roles);
   }
 
   public User(Long id, String name, String surname, String email,
@@ -71,9 +62,7 @@ public class User implements UserDetails {
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
-  public void addRole(Role role) {
-    roles.add(role);
-  }
+
   public void setPassword(String password) {
     this.password = password;
   }
@@ -147,10 +136,6 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
-
-  public User getUser() {
-    return User.this;
-  } // before fix config
 
 }
 

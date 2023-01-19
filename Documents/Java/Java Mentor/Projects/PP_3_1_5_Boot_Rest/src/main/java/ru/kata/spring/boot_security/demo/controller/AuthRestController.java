@@ -23,16 +23,18 @@ public class AuthRestController {
     this.userService = userService;
 
   }
-  @GetMapping
-  public ResponseEntity<List<User>> findAll() {
 
-    List<User> allUsers = userService.findAll();
+  @GetMapping
+  public ResponseEntity<List<User>> showUsers() {
+
+    List<User> allUsers = userService.listUsers();
 
     return ResponseEntity.ok(allUsers);
   }
+
   @GetMapping("/{id}")
-  public ResponseEntity<User> showAll(@PathVariable("id") Long id) {
-  User user = userService.finById(id);
+  public ResponseEntity<User> show(@PathVariable("id") Long id) {
+    User user = userService.getUser(id);
     return ResponseEntity.ok(user);
   }
 

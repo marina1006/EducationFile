@@ -11,11 +11,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
 
-public class WebSecurityConfig  {
+public class WebSecurityConfig {
 
   private final SuccessUserHandler successUserHandler;
   private final UserService userService;
@@ -30,11 +33,14 @@ public class WebSecurityConfig  {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
+        .cors().disable()
         .csrf().disable()
         .authorizeHttpRequests((auth) -> auth
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+            .requestMatchers("/resources/**", "/**").permitAll()
             .anyRequest().authenticated())
+
         .formLogin().loginPage("/login")
         .successHandler(successUserHandler).permitAll()
         .and()
@@ -45,6 +51,16 @@ public class WebSecurityConfig  {
         .logoutSuccessUrl("/login?logout")
         .permitAll();
     return http.build();
+  }
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    final UrlBasedCorsConfigurationSource source = new
+        UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.addAllowedMethod("*");
+    source.registerCorsConfiguration("/**", config.applyPermitDefaultValues());
+    return source;
   }
 
   @Bean
@@ -59,6 +75,7 @@ public class WebSecurityConfig  {
     authenticationProvider.setUserDetailsService(userService);
     return authenticationProvider;
   }
+
   @Bean
   public JdbcUserDetailsManager users(DataSource dataSource) {
     JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
