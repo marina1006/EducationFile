@@ -13,7 +13,7 @@ function editUser() {
         for (let i = 0; i < formEdit.roles.options.length; i++) {
             if (formEdit.roles.options[i].selected) editUserRoles.push({
                 id: formEdit.roles.value,
-                name: "ROLE_" + formEdit.roles.options[i].text
+                username: "ROLE_" + formEdit.roles.options[i].text
             });
         }
         fetch("http://localhost:8080/admin/users/" + formEdit.id.value, {
