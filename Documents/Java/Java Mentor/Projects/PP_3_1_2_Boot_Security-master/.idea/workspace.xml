@@ -52,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39425287" />
@@ -128,6 +128,7 @@
       <workItem from="1673252802577" duration="17509000" />
       <workItem from="1673890800476" duration="6919000" />
       <workItem from="1673970317317" duration="9053000" />
+      <workItem from="1674197788854" duration="16000" />
     </task>
     <servers />
   </component>

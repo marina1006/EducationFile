@@ -14,17 +14,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 @Configuration
 
 public class WebSecurityConfig {
 
   private final SuccessUserHandler successUserHandler;
-  private final UserService userService;
+  private final UserServiceImpl userService;
 
   public WebSecurityConfig(SuccessUserHandler successUserHandler,
-      @Lazy UserService userService) {
+      @Lazy UserServiceImpl userService) {
     this.successUserHandler = successUserHandler;
     this.userService = userService;
 

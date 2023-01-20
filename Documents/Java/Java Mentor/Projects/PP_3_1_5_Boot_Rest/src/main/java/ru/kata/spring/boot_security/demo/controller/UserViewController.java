@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping
-public class AuthController {
+@RequestMapping("/user")
+public class UserViewController {
 
-  @GetMapping("/admin")
-  public String showAdmin() {
-
-    return "main";
-  }
-
+    @GetMapping
+    public String showUserPage(){
+        return "list";
+    }
 }
