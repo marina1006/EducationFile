@@ -9,12 +9,13 @@ public interface UserDao {
 
   void saveUser(User user);
 
+  User findByUsername(String username);
+
   void removeUser(Long id);
 
   User getUser(Long id);
 
-  void update(Long id,User user);
-
+  void update(User user, Long id);
 
 
 }

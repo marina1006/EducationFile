@@ -3,17 +3,18 @@ package ru.kata.spring.boot_security.demo.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
-  private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
   @PersistenceContext
   private EntityManager manager;
 
@@ -25,15 +26,25 @@ public class UserDaoImpl implements UserDao {
   @Override
   @Transactional
   public void saveUser(User user) {
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+    user.setRoles(user.getRoles());
     manager.persist(user);
+  }
+
+  @Override
+  public User findByUsername(String username) {
+    return manager
+        .createQuery("SELECT u FROM User u JOIN FETCH u.roles " +
+            "WHERE u.username = :username", User.class)
+        .setParameter("username", username)
+        .getResultList().stream().findAny().orElse(null);
   }
 
   @Override
   @Transactional
   public void removeUser(Long id) {
 
-    manager.remove(id);
+    manager.remove(manager.find(User.class, id));
 
   }
 
@@ -45,17 +56,14 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   @Transactional
-  public void update( Long id,User user) {
-
-    user.setId(user.getId());
-
-    user.setPassword(
-        passwordEncoder.matches(user.getPassword(), user.getPassword()) ?
-            user.getPassword() : passwordEncoder.encode(user.getPassword()));
+  public void update( User user,Long id) {
+    User u = manager.find(User.class, id);
+    u.setUsername(user.getUsername());
+    u.setEmail(user.getEmail());
+    u.setPassword(user.getPassword());
 
     manager.merge(user);
 
   }
-
 
 }

@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import java.security.Principal;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
@@ -30,22 +32,23 @@ public class AuthController {
     this.roleService = roleService;
   }
   @GetMapping("/admin")
-  public String showUsers(ModelMap model,Principal principal) {
+  public String showUsers(ModelMap model, Principal principal) {
 
     model.addAttribute("user", userService.listUsers());
     User byUserName = userService.findByUsername(principal.getName());
     model.addAttribute("byUserName", byUserName);
-    return "main"; //view byUsername of DAO
+
+    return "main";
   }
   @GetMapping("/admin/{id}")
   public String show(@PathVariable Long id, ModelMap model) {
     model.addAttribute("user", userService.getUser(id));
-    return "main"; //1 id user of DAO
+    return "main";
   }
 
   @GetMapping("/admin/new")
-  public String newUsers(@ModelAttribute("user") User user) {
-
+  public String newUsers(ModelMap model) {
+    model.addAttribute("user", new User());
     return "main";
   }
 
@@ -61,8 +64,9 @@ public class AuthController {
     return "main";
   }
   @PatchMapping("/admin/update")
-  public String updateUsers(User user) {
-    userService.saveUser(user);
+  public String updateUsers(User user,Long id) {
+
+    userService.update(user,id);
     return "redirect:/admin";
   }
   @GetMapping("/admin/delete/{id}")
