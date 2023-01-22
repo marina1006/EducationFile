@@ -15,8 +15,7 @@ public interface UserDao {
 
   User getUser(Long id);
 
-  void update(User user,Long id);
-
+  void update(User user, Long id);
 
 
 }

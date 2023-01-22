@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,9 +25,8 @@ public class UserDaoImpl implements UserDao {
   @Transactional
   public void saveUser(User user) {
     user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-
+    user.setRoles(user.getRoles());
     manager.persist(user);
-
   }
 
   @Override
@@ -54,15 +54,14 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   @Transactional
-  public void update(User user, Long id) {
-
+  public void update( User user,Long id) {
     User u = manager.find(User.class, id);
     u.setUsername(user.getUsername());
     u.setEmail(user.getEmail());
     u.setPassword(user.getPassword());
+
     manager.merge(user);
 
   }
-
 
 }
