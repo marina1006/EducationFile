@@ -5,7 +5,7 @@ function fillInPrincipal() {
         .then(res => res.json())
         .then(data => {
             $('#headerUserName').append(data.username);
-            let roles = data.roles.map(role => " " + role.name.substring(5));
+            let roles = data.roles;
             $('#headerRole').append(roles);
             let user = `$(
                 <tr>

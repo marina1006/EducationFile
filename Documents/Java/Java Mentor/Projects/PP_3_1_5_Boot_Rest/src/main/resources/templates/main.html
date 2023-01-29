@@ -100,8 +100,9 @@
                 </div>
                 <div class="mb-3">
                   <label for="emailNew" class="col-form-label">Email</label>
-                  <input type="text" name = "age"
-                         class="form-control" id="emailNew"/>
+                  <input type="text" name = "email"
+                         class="form-control" id="emailNew"
+                         required minlength="2" maxlength="20"/>
                 </div>
                 <div class="mb-3">
                   <label for="passNew" class="col-form-label">Password</label>
@@ -183,7 +184,8 @@
           <div class="mb-3">
             <label for="emailEdit" class="col-form-label">Email</label>
             <input type="text" name = "email"
-                   class="form-control" id="emailEdit"/>
+                   class="form-control" id="emailEdit"
+                   required minlength="2" maxlength="20"/>
           </div>
           <div class="mb-3">
             <label for="passEdit" class="col-form-label">Password</label>

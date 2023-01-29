@@ -51,8 +51,8 @@ public class AuthRestController {
   }
 
   @PatchMapping("admin/users/{id}")
-  public ResponseEntity<User> updateUsers(@RequestBody User user) {
-    userService.saveUser(user);
+  public ResponseEntity<User> updateUsers(@RequestBody User user, @PathVariable("id") Long id) {
+    userService.update(user,id);
     return ResponseEntity.ok(user);
   }
 

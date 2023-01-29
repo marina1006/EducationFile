@@ -5,5 +5,5 @@ async function openAndFillInTheModal(form, modal, id){
     form.username.value = user.username;
     form.surname.value = user.surname;
     form.email.value = user.email;
-    form.roles.value = user.roles[0].id;
+    form.roles.value = user.roles;
 }

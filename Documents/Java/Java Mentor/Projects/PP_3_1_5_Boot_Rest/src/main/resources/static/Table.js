@@ -13,7 +13,7 @@ function findAll() {
                             <td>${user.username}</td>
                             <td>${user.surname}</td>
                             <td>${user.email}</td>   
-                            <td>${user.roles.map(role => " " + role.name.substring(5))}</td>
+                            <td>${user.roles}</td>
                             <td>
                                 <button type="button" class="btn btn-warning"
                                 data-bs-toogle="modal"
